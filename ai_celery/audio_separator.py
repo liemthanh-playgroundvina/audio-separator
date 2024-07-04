@@ -93,6 +93,7 @@ def audio_separator_task(self, task_id: str, data: bytes, task_request: bytes, f
         return
 
     except ValueError as e:
+        logging.getLogger().error(str(e), exc_info=True)
         err = {'code': "400", 'message': str(e).split('!')[0].strip()}
         Celery_RedisClient.failed(task_id, data, err)
 

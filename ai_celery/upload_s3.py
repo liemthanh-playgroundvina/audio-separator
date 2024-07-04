@@ -70,7 +70,7 @@ def fast_upload_files(files, folder, workers=20):
     res = []
 
     for file in files:
-        dst = os.path.join(folder, str(int(time.time() * 1000)) + os.path.splitext(file)[1])
+        dst = os.path.join(folder, str(int(time.time() * 10**7)) + os.path.splitext(file)[1])
         s3t.upload(
             file,
             settings.AWS_BUCKET_NAME,

@@ -6,6 +6,7 @@ services:
     container_name: worker-audio-separator
     volumes:
       - .:/app
+      - ./models:/models
       - app-public-volume-v2:/app/static/public/ai_cover_gen
     command: bash -c "celery -A ai_celery.router worker -Q audio_separator --loglevel=info --pool=prefork --concurrency=1 -E --logfile=logs/celery.log --hostname=celery@audio_separator && tail -f /dev/null" &
     restart: always
