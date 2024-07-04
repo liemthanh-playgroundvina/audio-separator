@@ -1,12 +1,12 @@
 version: '3.9'
 
 services:
-  worker-audio_separator:
-    image: audio_separator
-    container_name: worker-audio_separator
+  worker-audio-separator:
+    image: audio-separator
+    container_name: worker-audio-separator
     volumes:
       - .:/app
-      - ./src/config:/usr/local/bin/src/config
+      - ./models:/models
       - ai_cover-data:/app/static/public/ai_cover_gen
     command: bash -c "celery -A ai_celery.router worker -Q audio_separator --loglevel=info --pool=prefork --concurrency=1 -E --logfile=logs/celery.log --hostname=celery@audio_separator && tail -f /dev/null" &
     restart: always

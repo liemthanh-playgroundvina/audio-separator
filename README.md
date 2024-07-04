@@ -8,7 +8,7 @@
 
 1. Clone & download model
 ```# command
-https://github.com/liemthanh-playgroundvina/audio-separator.git
+git clone https://github.com/liemthanh-playgroundvina/audio-separator.git
 cd audio-separator
 ```
 
