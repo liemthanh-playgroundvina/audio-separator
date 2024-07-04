@@ -35,3 +35,15 @@ make start
 
 ## Pipeline
 ![Pipeline](https://github.com/liemthanh-playgroundvina/audio-separator/blob/main/sperate.PNG)
+
+1. basic:
+- [Beat, Vocals]
+2. intermediate:
+- Beat -> [Bass, Drums, Other, Vocals, Guitar, Piano]
+- Vocals -> [Backing, Vocals not backing]
+3. detailed
+- Beat -> [Bass, Drums, Other, Vocals, Guitar, Piano]
+- Vocals -> [Backing, Reverb, Delay, Clean Vocals]
+4. detailed_vocals
+- Beat
+- Vocals -> [Backing, Reverb, Delay, Clean Vocals]

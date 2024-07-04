@@ -4,7 +4,7 @@ import json
 
 def separate_audio(file_path, level):
     """
-    level: ['basic', 'intermediate', 'detailed']
+    level: ['basic', 'intermediate', 'detailed', 'detailed_vocals']
 
         {
           "output_dir": "./output/1719996384",
