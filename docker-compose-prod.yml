@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  worker-audio_separator:
+    image: audio_separator
+    container_name: worker-audio_separator
+    volumes:
+      - .:/app
+      - ./src/config:/usr/local/bin/src/config
+      - ai_cover-data:/app/static/public/ai_cover_gen
+    command: bash -c "celery -A ai_celery.router worker -Q audio_separator --loglevel=info --pool=prefork --concurrency=1 -E --logfile=logs/celery.log --hostname=celery@audio_separator && tail -f /dev/null" &
+    restart: always
+    networks:
+      - aiservice-net-v2
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: all
+            capabilities: [gpu]
+
+volumes:
+  "ai_cover-data":
+    external: true
+
+networks:
+  aiservice-net-v2:
+    external: true

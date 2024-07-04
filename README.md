@@ -1,15 +1,15 @@
-# AI TALKING FACE
-- Link: https://github.com/OpenTalker/SadTalker
+# AUDIO SEPARATOR
+- Link: https://github.com/karaokenerds/python-audio-separator
 
 - Queue System using celery(python) + redis + rabbitMQ
 
-- Image information: Python 3.8
+- Image information: Python 3.10
 
 
 1. Clone & download model
 ```# command
-git clone https://github.com/liemthanh-playgroundvina/ai-talking-face
-cd ai-talking-face
+https://github.com/liemthanh-playgroundvina/audio-separator.git
+cd audio-separator
 ```
 
 2. Build Image
@@ -32,3 +32,6 @@ make config
 ```# command
 make start
 ```
+
+## Pipeline
+![Pipeline](https://github.com/liemthanh-playgroundvina/audio-separator/blob/main/sperate.PNG)
