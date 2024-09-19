@@ -30,7 +30,7 @@ from audio_separator.separator import Separator
 def separate_basic(file_path):
     """[Beat, Vocals]"""
     start_time = time.time()
-    output_dir = f"./output/{int(start_time)}"
+    output_dir = f"./static/public/ai_cover_gen/{int(start_time)}"
 
     separator = Separator(
         model_file_dir="/models/",
@@ -57,7 +57,7 @@ def separate_intermediate(file_path):
     Vocals -> [Backing, Vocals not backing]
     """
     start_time = time.time()
-    output_dir = f"./output/{int(start_time)}"
+    output_dir = f"./static/public/ai_cover_gen/{int(start_time)}"
 
     separator = Separator(
         model_file_dir="/models/",
@@ -105,7 +105,7 @@ def separate_detailed(file_path):
     Vocals -> [Backing, Reverb, Delay, Clean Vocals]
     """
     start_time = time.time()
-    output_dir = f"./output/{int(start_time)}"
+    output_dir = f"./static/public/ai_cover_gen/{int(start_time)}"
 
     separator = Separator(
         model_file_dir="/models/",
@@ -171,7 +171,7 @@ def separate_detailed_vocals(file_path):
     Vocals -> [Backing, Reverb, Delay, Clean Vocals]
     """
     start_time = time.time()
-    output_dir = f"./output/{int(start_time)}"
+    output_dir = f"./static/public/ai_cover_gen/{int(start_time)}"
 
     separator = Separator(
         model_file_dir="/models/",

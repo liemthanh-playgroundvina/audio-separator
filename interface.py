@@ -39,5 +39,5 @@ def separate_audio(file_path, level):
     )
     output = result.stdout.strip()
     output = json.loads(output, strict=False)
-
+    print(output)
     return output['output_dir'], output['output'], output['execution_time']

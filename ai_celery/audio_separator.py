@@ -1,8 +1,8 @@
 import json
 import logging
-import os.path
+import os
 import shutil
-from datetime import datetime
+import time
 
 from celery import Task
 from ai_celery.celery_app import app
@@ -61,11 +61,18 @@ def audio_separator_task(self, task_id: str, data: bytes, task_request: bytes, f
         audio_file = "/app/static/public/ai_cover_gen/" + audio_file
         output_dir, output, time_execute = separate_audio(audio_file, request.get('level'))
 
-        # Save s3
-        urls = {
-            "instrumental": CommonCeleryService.fast_upload_s3_files(output["instrumental"], settings.AUDIO_SEPARATOR),
-            "vocals": CommonCeleryService.fast_upload_s3_files(output["vocals"], settings.AUDIO_SEPARATOR),
-        }
+        # Save local
+        urls = update_links(output)
+
+        # # Save s3
+        # urls = {
+        #     "instrumental": CommonCeleryService.fast_upload_s3_files(output["instrumental"], settings.AUDIO_SEPARATOR),
+        #     "vocals": CommonCeleryService.fast_upload_s3_files(output["vocals"], settings.AUDIO_SEPARATOR),
+        # }
+        # try:
+        #     shutil.rmtree(output_dir)
+        # except:
+        #     pass
 
         # Successful
         metadata = {
@@ -77,11 +84,6 @@ def audio_separator_task(self, task_id: str, data: bytes, task_request: bytes, f
         }
         response = {"urls": urls, "metadata": metadata}
         Celery_RedisClient.success(task_id, data, response)
-
-        try:
-            shutil.rmtree(output_dir)
-        except:
-            pass
 
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
@@ -119,3 +121,13 @@ def audio_separator_task(self, task_id: str, data: bytes, task_request: bytes, f
         gc.collect()
 
         return
+
+
+def update_links(d):
+    for key, value in d.items():
+        if isinstance(value, dict):
+            update_links(value)
+        elif isinstance(value, str) and value.startswith("./"):
+            d[key] = value.replace("./static/public", f"{settings.SERVER_URL}/static", 1)
+
+    return d

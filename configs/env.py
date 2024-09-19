@@ -11,6 +11,10 @@ load_dotenv("./configs/.env")
 class Settings(BaseSettings):
     AI_QUERY_NAME = os.getenv("AI_QUERY_NAME", "ai_celery")
     AUDIO_SEPARATOR = os.getenv("AUDIO_SEPARATOR", "AUDIO_SEPARATOR")
+
+    # SERVER
+    SERVER_URL = os.getenv("SERVER_URL", "")
+
     # REDIS
     REDIS_HOST = os.getenv("REDIS_HOST", "127.0.0.1")
     REDIS_PORT = os.getenv("REDIS_PORT", 6379)
