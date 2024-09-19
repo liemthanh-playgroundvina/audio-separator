@@ -57,7 +57,7 @@ def upload_file(file, folder):
         }
 
 
-def fast_upload_files(files, folder, workers=20):
+def fast_upload_files(files, folder, workers=100):
     import boto3.s3.transfer as s3transfer
 
     s3client = getS3()

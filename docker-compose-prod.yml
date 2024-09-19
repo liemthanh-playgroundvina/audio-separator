@@ -8,7 +8,7 @@ services:
       - .:/app
       - ./models:/models
       - ai_cover-data:/app/static/public/ai_cover_gen
-    command: bash -c "celery -A ai_celery.router worker -Q audio_separator --loglevel=info --pool=prefork --concurrency=1 -E --logfile=logs/celery.log --hostname=celery@audio_separator && tail -f /dev/null" &
+    command: bash -c "celery -A ai_celery.router worker -Q audio_separator --loglevel=info --pool=prefork --concurrency=3 -E --logfile=logs/celery.log --hostname=celery@audio_separator && tail -f /dev/null" &
     restart: always
     networks:
       - aiservice-net-v2

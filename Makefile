@@ -34,5 +34,10 @@ cmd-image:
 cmd-worker:
 	docker compose exec worker-audio-separator /bin/bash
 
+
 log-worker:
 	cat logs/celery.log
+	docker logs worker-audio-separator
+
+log-worker-stream:
+	tail -f -n 200 logs/celery.log
